@@ -31,19 +31,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'channels',
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+
+    'app',
+    'channels'
 ]
 
-ASGI_APPLICATION = 'ChatApp.asgi.application'
-
-WSGI_APPLICATION = 'ChatApp.wsgi.application'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,6 +70,9 @@ TEMPLATES = [
         },
     },
 ]
+
+
+WSGI_APPLICATION = "ChatApp.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -125,3 +127,16 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+ASGI_APPLICATION = 'ChatApp.asgi.application'
+
+
+CHANNEL_LAYERS ={
+    'default': {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        # 'CONFIG':{
+        #     "hosts":[('127.0.0.1', 6739)]
+        # }
+    }
+}
