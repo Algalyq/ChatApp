@@ -10,17 +10,25 @@
     </head>
     <body>
 
-        <div id="user-log"></div>
+        <div id="user-hello"></div>
+        {{ room_name | json_script:"room-name"}}
 
-    {{ room_name | json_script:"room-name"}}
         <script>
             const roomName = JSON.parse(document.getElementById('room-name').textContent);
-            const chatSocket = new WebSocket('ws://'+ window.location.host + '/ws/chat/' + roomName + '/');
-
-            chatSocket.onmessage = function(e) {
-                const data = JSON.parse(e.data)
+            
+            var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+            var ws_path = ws_scheme + '://' + window.location.host + "/ws" + window.location.pathname;					
+            var socket = new WebSocket(ws_path);
+            {% comment %} const chatSocket = new WebSocket(
+                                'ws://' +
+                                 window.location.host +
+                                '/ws/chat/' +
+                                 roomName +
+                                '/'); {% endcomment %}
+            socket.onmessage = function(e) {
+                const data = JSON.parse(e.data);
                 console.log(data)
-                document.querySelector('#user-log').innerHTML = (data.tester)
+                document.querySelector('#user-hello').innerHTML = (data.tester)
             }
         </script>
 
