@@ -57,8 +57,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         }))
 
 
-    pass
-
 
 class RoomConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
     queryset = Room.objects.all()

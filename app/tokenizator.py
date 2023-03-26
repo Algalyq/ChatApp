@@ -1,7 +1,9 @@
 import jwt
 from datetime import datetime, timedelta
 
-from ChatApp import settings
+import sys
+sys.path.append("ChatApp")
+import settings
 
 ALGORITHM = "HS256"
 access_token_jwt_subject = "access"
@@ -16,9 +18,8 @@ def create_token(user_id: int) -> dict:
         "token_type": "Token",
     }
 
-
 def create_access_token(data: dict, expires_delta: timedelta = None):
-    """Создание токена"""
+
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
@@ -29,5 +30,5 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     return encoded_jwt
 
 
-token = create_token(4)
+token = create_token(1)
 print(token)

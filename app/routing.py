@@ -6,3 +6,5 @@ websocket_urlpatterns = [
     path("ws/", UserConsumer.as_asgi()),
     path('ws/chat2/', RoomConsumer.as_asgi()),
 ]
+
+# daphne ChatApp.asgi:application
