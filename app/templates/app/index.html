@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <p>Lets</p>
-        
-        <script src="" async defer></script>
-    </body>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+</head>
+<body>
+    What chat room would you like to enter?<br>
+    <form method="POST">
+        {% csrf_token %}
+        <input id="room-name-input" name="name" type="text" size="100"><br>
+        <input id="room-name-submit" type="submit" value="Enter">
+    </form>
+</body>
 </html>
